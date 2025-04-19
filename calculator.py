@@ -23,8 +23,8 @@ def divide(a, b):
 def index():
     result = ""
     mode = request.form.get("mode", "calculator")  # Get the selected mode, default to calculator
-    source_currency = "USD"  # Default source currency
-    target_currency = "MYR"  # Default target currency
+    source_currency = "MYR"  # Default source currency
+    target_currency = "SGD"  # Default target currency
 
     if request.method == "POST":
         if mode == "calculator":
@@ -49,8 +49,8 @@ def index():
         elif mode == "converter":
             try:
                 amount = float(request.form.get("amount", ""))
-                source_currency = request.form.get("source_currency", "USD")
-                target_currency = request.form.get("target_currency", "MYR")
+                source_currency = request.form.get("source_currency", "MYR")
+                target_currency = request.form.get("target_currency", "SGD")
 
                 # Ensure the conversion rates dictionary contains the required currencies
                 rate = conversion_rates.get(source_currency, {}).get(target_currency, None)
