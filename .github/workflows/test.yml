@@ -44,6 +44,6 @@ jobs:
 
       - name: Deploy to Render
         run: |
-          curl -X POST https://api.render.com/deploy \
+          curl -X POST https://api.render.com/deploy/srv-d01mklfgi27c73er7ea0?key=vTjUVzInmrc \
           -H "Authorization: Bearer $RENDER_API_KEY" \
           -d '{"serviceId": "srv-d01mklfgi27c73er7ea0"}'
