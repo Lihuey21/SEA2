@@ -31,10 +31,10 @@ jobs:
           pytest --maxfail=1 --disable-warnings -q
 
   deploy_to_render:
-    needs: build_and_test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
+  needs: build_and_test
+  runs-on: ubuntu-latest
+  if: success() && github.ref == 'refs/heads/main' && github.event_name == 'push'
+  
     env:
       RENDER_API_KEY: ${{ secrets.rnd_S8qB6SWCarKRy7qvDIeiTnXlphyo }}
 
