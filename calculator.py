@@ -43,8 +43,8 @@ def index():
                     result = divide(num1, num2)
                 else:
                     result = "Invalid operation"
-                except ValueError:
-                    result = "Please enter valid numbers."
+            except ValueError:
+                result = "Please enter valid numbers."
                 
         elif mode == "converter":
             try:
