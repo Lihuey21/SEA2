@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator and Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            margin: 20px 0;
+        }
+        select, input, button {
+            font-size: 1em;
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            background-color: #76c7c0;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #64b1ab;
+        }
+        h3 {
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose A Tool</h1>
+
+    <form method="POST">
+        <label for="mode">Select Tool:</label>
+        <select name="mode" id="mode" onchange="this.form.submit()">
+            <option value="calculator" {% if mode == 'calculator' %}selected{% endif %}>Calculator</option>
+            <option value="converter" {% if mode == 'converter' %}selected{% endif %}>Currency Converter</option>
+        </select>
+    </form>
+
+    <hr>
+
+    <!-- Calculator Section -->
+    {% if mode == 'calculator' %}
+    <h2>Calculator</h2>
+    <form method="POST">
+        <input type="hidden" name="mode" value="calculator">
+        <input type="text" name="num1" placeholder="First number" required>
+        <select name="operation">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="x">×</option>
+            <option value="÷">÷</option>
+        </select>
+        <input type="text" name="num2" placeholder="Second number" required>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+
+    <!-- Currency Converter Section -->
+    {% if mode == 'converter' %}
+    <h2>Currency Converter</h2>
+    <form method="POST">
+        <input type="hidden" name="mode" value="converter">
+        <input type="text" name="amount" placeholder="Key in number" required>
+        <br>
+        <label for="source_currency">Source Currency:</label>
+        <select name="source_currency" id="source_currency">
+            <option value="USD" {% if source_currency == 'USD' %}selected{% endif %}>USD</option>
+            <option value="MYR" {% if source_currency == 'MYR' %}selected{% endif %}>MYR</option>
+            <option value="SGD" {% if source_currency == 'SGD' %}selected{% endif %}>SGD</option>
+            <option value="JPY" {% if source_currency == 'JPY' %}selected{% endif %}>JPY</option>
+        </select>
+        <label for="target_currency">Target Currency:</label>
+        <select name="target_currency" id="target_currency">
+            <option value="USD" {% if target_currency == 'USD' %}selected{% endif %}>USD</option>
+            <option value="MYR" {% if target_currency == 'MYR' %}selected{% endif %}>MYR</option>
+            <option value="SGD" {% if target_currency == 'SGD' %}selected{% endif %}>SGD</option>
+            <option value="JPY" {% if target_currency == 'JPY' %}selected{% endif %}>JPY</option>
+        </select>
+        <br><br>
+        <button type="submit">Convert</button>
+    </form>
+    {% endif %}
+
+    {% if result %}
+    <h3>Result: {{ result }}</h3>
+    {% endif %}
+</body>
+</html>
