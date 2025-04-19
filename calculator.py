@@ -37,7 +37,14 @@ def index():
                     result = add(num1, num2)
                 elif operation == "-":
                     result = subtract(num1, num2)
-
+                elif operation == "x":
+                    result = multiply(num1, num2)
+                elif operation == "÷":
+                    result = divide(num1, num2)
+                else:
+                    result = "Invalid operation"
+                except ValueError:
+                    result = "Please enter valid numbers."
                 
         elif mode == "converter":
             try:
